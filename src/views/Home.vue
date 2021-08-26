@@ -1,18 +1,36 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Posts</h1>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostList v-if="showPosts" :posts="posts" />
+    </div>
+    <div v-else class="loader">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { ref } from "vue";
+import PostList from "../components/PostList.vue";
+import fetchPosts from "../services/fetchService.js";
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  components: { PostList },
+  setup() {
+    const showPosts = ref(true);
+
+    const { posts, error, load } = fetchPosts();
+    load();
+
+    return { showPosts, posts, error };
+  },
+};
 </script>
