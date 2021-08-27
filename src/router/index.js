@@ -5,6 +5,7 @@ import Login from "../views/authentication/Login.vue";
 import Error from "../views/404Page/Error.vue";
 import CreatePost from "../views/CreatePost.vue";
 import Details from "../views/Details.vue";
+import Update from "../views/UpdatePost.vue";
 
 const isLoggedIn = true;
 
@@ -49,6 +50,12 @@ const routes = [
     path: "/posts/:id",
     name: "Details",
     component: Details,
+    props: true,
+  },
+  {
+    path: "/update/:id",
+    name: "Update",
+    component: Update,
     props: true,
   },
   {
