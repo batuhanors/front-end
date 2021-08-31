@@ -5,6 +5,7 @@
     <div v-if="posts.length">
       <PostList v-if="showPosts" :posts="posts" />
     </div>
+
     <div v-else class="loader">
       <div class="lds-ring">
         <div></div>
@@ -18,6 +19,7 @@
 
 <script>
 import { ref } from "vue";
+
 import PostList from "../components/PostList.vue";
 import fetchPosts from "../services/fetchService.js";
 

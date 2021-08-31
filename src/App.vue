@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar :userinf="username" />
   <div class="container">
     <router-view />
   </div>
@@ -7,10 +7,23 @@
 
 <script>
 import Navbar from "../src/components/Navbar.vue";
+import { onMounted, ref } from "vue";
 
 export default {
   components: { Navbar },
-  setup() {},
+  setup() {
+    const username = ref("");
+    onMounted(async () => {
+      const response = await fetch("http://localhost:3500/api/users/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      const user = await response.json();
+      username.value = user.username;
+    });
+
+    return { username };
+  },
 };
 </script>
 

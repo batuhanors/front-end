@@ -40,7 +40,6 @@ export default {
       return year;
     });
 
-    console.log(date);
     return { snippet, date };
   },
 };

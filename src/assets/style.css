@@ -26,6 +26,11 @@ nav {
   font-family: "Roboto", sans-serif;
 }
 
+.auth-nav {
+  position: absolute;
+  right: 5%;
+}
+
 .home h1 {
   margin-top: 3rem;
 }
@@ -194,6 +199,41 @@ textarea {
   right: 13.1%;
   font-size: 54px;
   bottom: 8%;
+}
+
+/* AUTH FORMS STYLING */
+.auth-form {
+  text-align: center;
+  padding: 20px 0;
+  background: #334756;
+  width: 40%;
+  margin: 3rem auto;
+  border-radius: 20px;
+}
+.auth-form form {
+  width: 320px;
+  margin: 25px auto;
+}
+.auth-form label {
+  display: block;
+  margin: 25px auto;
+}
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  outline: none;
+  color: #999;
+  margin: 10px auto;
+}
+.auth-form button {
+  margin-top: 1rem;
+  width: 8rem;
+}
+.auth-link {
+  color: azure;
+  font-size: 18px;
 }
 
 /* #####################################
