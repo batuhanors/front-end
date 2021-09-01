@@ -33,7 +33,7 @@
             >
           </li>
         </ul>
-        <div v-if="!isLoggedIn" class="auth-nav">
+        <div v-if="!$store.state.isLoggedIn" class="auth-nav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'Signup' }"
@@ -58,7 +58,7 @@
         <div v-else class="auth-nav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <p>Logged in as {{ username }}</p>
+              <p>Logged in as {{ $store.state.username }}</p>
             </li>
             <li class="nav-item">
               Logout
@@ -71,16 +71,15 @@
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 export default {
   props: ["userinf"],
   setup(props) {
-    const isLoggedIn = ref(false);
     const username = ref("");
 
     username.value = props.userinf;
 
-    return { isLoggedIn, username };
+    return { username };
   },
 };
 </script>

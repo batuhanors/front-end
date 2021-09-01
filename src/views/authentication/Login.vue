@@ -56,8 +56,10 @@ export default {
         credentials: "include",
         body: JSON.stringify(userInfo),
       }).then(() => {
-        router.push({ name: "Home" });
+        location.reload();
       });
+
+      router.push({ name: "Home" });
     };
 
     return { username, password, onsubmit };

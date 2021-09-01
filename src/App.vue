@@ -7,19 +7,24 @@
 
 <script>
 import Navbar from "../src/components/Navbar.vue";
+import store from "../src/store/index.js";
 import { onMounted, ref } from "vue";
 
 export default {
   components: { Navbar },
   setup() {
     const username = ref("");
+
     onMounted(async () => {
       const response = await fetch("http://localhost:3500/api/users/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
       const user = await response.json();
-      username.value = user.username;
+      if (response.status === 200) {
+        store.commit("setAuth");
+        store.commit("setUserName", user.username);
+      }
     });
 
     return { username };

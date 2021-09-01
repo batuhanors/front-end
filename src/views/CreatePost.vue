@@ -1,43 +1,48 @@
 <template>
   <h1>Create Post</h1>
-  <div class="form">
-    <form @submit.prevent="submitPost">
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+  <div v-if="$store.state.isLoggedIn">
+    <div class="form">
+      <form @submit.prevent="submitPost">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            v-model="title"
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Title"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label content-label">Content</label>
+          <textarea
+            v-model="content"
+            id="content"
+            placeholder="Write your post here"
+            required
+          ></textarea>
+        </div>
+        <label>Tags (hit enter to add a tag)</label>
         <input
-          v-model="title"
+          v-model="tag"
+          @keydown.enter.prevent="tagHandler"
           type="text"
-          class="form-control"
-          id="title"
-          placeholder="Title"
-          autocomplete="off"
-          required
+          class="input-form"
+          placeholder="Add a tag"
         />
-      </div>
-      <div class="mb-3">
-        <label for="content" class="form-label content-label">Content</label>
-        <textarea
-          v-model="content"
-          id="content"
-          placeholder="Write your post here"
-          required
-        ></textarea>
-      </div>
-      <label>Tags (hit enter to add a tag)</label>
-      <input
-        v-model="tag"
-        @keydown.enter.prevent="tagHandler"
-        type="text"
-        class="input-form"
-        placeholder="Add a tag"
-      />
-      <button type="submit" class="btn btn-primary">Publish</button>
-    </form>
-    <div class="center">
-      <div v-for="tag in tags" :key="tag" class="tag">
-        <p class="tag-p">{{ tag }}</p>
+        <button type="submit" class="btn btn-primary">Publish</button>
+      </form>
+      <div class="center">
+        <div v-for="tag in tags" :key="tag" class="tag">
+          <p class="tag-p">{{ tag }}</p>
+        </div>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <h1>You need to Login if you want to create a post!</h1>
   </div>
 </template>
 
