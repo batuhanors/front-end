@@ -1,0 +1,73 @@
+@media only screen and (max-width: 480px) {
+  .home {
+    margin-top: 3rem;
+  }
+  nav {
+    height: fit-content;
+  }
+  .auth-nav {
+    position: relative;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .snippet-span {
+    display: block;
+  }
+  .author {
+    position: relative;
+    float: none;
+    margin-left: 3rem;
+  }
+  .author-img {
+    margin-left: 0.5rem !important;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  .auth-form {
+    width: 100%;
+  }
+  .update-btn {
+    position: static;
+    margin-right: 4rem;
+  }
+  .delete-btn {
+    position: static;
+    margin-left: 4rem;
+  }
+  .seperator {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav {
+    height: fit-content;
+  }
+  .auth-nav {
+    position: relative;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .auth-form {
+    width: 75%;
+  }
+  .seperator {
+    display: none;
+  }
+  .update-btn {
+    position: static;
+    margin-right: 4rem;
+  }
+  .delete-btn {
+    position: static;
+    margin-left: 4rem;
+  }
+  .seperator {
+    display: none;
+  }
+}

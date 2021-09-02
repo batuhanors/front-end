@@ -4,6 +4,11 @@
     <span class="date">
       <img src="https://img.icons8.com/cotton/21/000000/delivery-time.png" />
       {{ post.created.slice(0, 10) }}, {{ post.created.slice(11, 16) }}
+      <span style="margin-left: 2rem;" class="author-img">
+        <img src="https://img.icons8.com/ios-filled/32/000000/user.png" />
+        Author:
+        {{ post.author }}
+      </span>
     </span>
     <h2 class="details-header">{{ post.title }}</h2>
     <p class="details-content">{{ post.content }}</p>
@@ -15,17 +20,21 @@
       </router-link>
     </button>
   </div>
-
-  <router-link :to="{ name: 'Update', params: { id: pid } }" class="update-btn"
-    >Update</router-link
-  >
-  <h1 class="seperator">|</h1>
-  <button class="delete-btn" @click="deleteHandler">Delete</button>
+  <div v-if="post.author === $store.state.username">
+    <router-link
+      :to="{ name: 'Update', params: { id: pid } }"
+      class="update-btn"
+      >Update</router-link
+    >
+    <h1 class="seperator">|</h1>
+    <button class="delete-btn" @click="deleteHandler">Delete</button>
+  </div>
 </template>
 
 <script>
 import getPost from "../services/getPost.js";
 import { useRouter } from "vue-router";
+import store from "../store/index.js";
 
 export default {
   props: ["id"],
@@ -34,6 +43,7 @@ export default {
 
     const pid = props.id;
 
+    const username = store.state.username;
     const router = useRouter();
 
     const deleteHandler = async () => {
@@ -50,6 +60,7 @@ export default {
       postLoad,
       pid,
       deleteHandler,
+      username,
     };
   },
 };

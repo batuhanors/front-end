@@ -22,6 +22,11 @@
     </p>
 
     <span class="snippet-span"> Tags: {{ post.tags }} </span>
+    <span class="author"
+      ><img
+        src="https://img.icons8.com/material-outlined/24/000000/user--v1.png"
+      />Author: {{ post.author }}
+    </span>
   </div>
 </template>
 

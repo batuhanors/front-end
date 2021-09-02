@@ -23,6 +23,7 @@
 
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <p>{{ err }}</p>
     <p>
       Don't have an account?
       <router-link :to="{ name: 'Signup' }" class="auth-link">
@@ -44,25 +45,28 @@ export default {
     const username = ref("");
     const password = ref("");
 
+    const err = ref("");
+
     const onsubmit = async () => {
       const userInfo = {
         username: username.value,
         password: password.value,
       };
 
-      fetch("http://localhost:3500/api/users/login", {
+      const response = await fetch("http://localhost:3500/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(userInfo),
-      }).then(() => {
-        location.reload();
       });
-
-      router.push({ name: "Home" });
+      if (response.status === 404) {
+        err.value = "Username or password is Incorrect!";
+      } else {
+        location.replace("/");
+      }
     };
 
-    return { username, password, onsubmit };
+    return { username, password, onsubmit, err };
   },
 };
 </script>

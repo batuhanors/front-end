@@ -49,6 +49,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import store from "../store/index.js";
 
 export default {
   setup() {
@@ -72,6 +73,7 @@ export default {
       const newPost = {
         title: title.value,
         content: content.value,
+        author: store.state.username,
         tags: tags.value.toString(),
       };
 

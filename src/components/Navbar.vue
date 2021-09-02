@@ -36,6 +36,9 @@
         <div v-if="!$store.state.isLoggedIn" class="auth-nav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+              <p style="margin-top: 0.6rem;">You are not logged in</p>
+            </li>
+            <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'Signup' }"
                 ><span
                   ><img
@@ -61,7 +64,7 @@
               <p>Logged in as {{ $store.state.username }}</p>
             </li>
             <li class="nav-item">
-              Logout
+              <button class="logout-btn" @click="logOutHandler">Logout</button>
             </li>
           </ul>
         </div>
@@ -73,13 +76,21 @@
 <script>
 import { ref } from "vue";
 export default {
-  props: ["userinf"],
-  setup(props) {
+  props: [],
+  setup() {
     const username = ref("");
 
-    username.value = props.userinf;
+    const logOutHandler = async () => {
+      fetch("http://localhost:3500/api/users/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      }).then(() => {
+        location.reload();
+      });
+    };
 
-    return { username };
+    return { username, logOutHandler };
   },
 };
 </script>
